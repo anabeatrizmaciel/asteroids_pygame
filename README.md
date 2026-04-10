@@ -51,39 +51,39 @@ A nave pode:
 - acelerar,
 - disparar projéteis,
 - utilizar hyperspace para se teleportar.  
-O controle é tratado no loop principal e na classe `Ship`. citeturn818657view1turn818657view3
+O controle é tratado no loop principal e na classe `Ship`. 
 
 ### 2. Sistema de tiro
 O jogador possui:
 - cooldown entre disparos,
 - velocidade definida para os projéteis,
 - tempo de vida do tiro,
-- limite simultâneo de balas. citeturn818657view2turn646316view4turn818657view3
+- limite simultâneo de balas. 
 
 ### 3. Asteroides com divisão por tamanho
-Os asteroides possuem três tamanhos (`L`, `M` e `S`) e, ao serem destruídos, podem se dividir em fragmentos menores, gerando pontuação diferente para cada tamanho. citeturn818657view2turn646316view8turn818657view3
+Os asteroides possuem três tamanhos (`L`, `M` e `S`) e, ao serem destruídos, podem se dividir em fragmentos menores, gerando pontuação diferente para cada tamanho.
 
 ### 4. UFO inimigo
 O jogo já conta com um inimigo do tipo UFO, que:
 - surge periodicamente,
 - atravessa a tela,
 - tenta atirar na nave,
-- concede pontuação ao ser destruído. citeturn818657view2turn646316view3turn646316view6turn818657view3
+- concede pontuação ao ser destruído.
 
 ### 5. Progressão por waves
-Quando não restam asteroides em tela, uma nova onda é iniciada com maior quantidade de inimigos. citeturn646316view1turn646316view6
+Quando não restam asteroides em tela, uma nova onda é iniciada com maior quantidade de inimigos.
 
 ### 6. HUD e progressão do jogador
 O HUD atual exibe:
 - score,
 - vidas,
-- wave atual. citeturn646316view9
+- wave atual.
 
 ### 7. Cenas do jogo
 O fluxo atual do jogo inclui:
 - menu inicial,
 - cena principal de gameplay,
-- tela de game over. citeturn818657view1
+- tela de game over. 
 
 ---
 
@@ -169,7 +169,7 @@ A organização atual do código é simples e adequada para expansão incrementa
 ### Visão geral dos principais arquivos
 
 #### `main.py`
-Ponto de entrada da aplicação. Instancia `Game` e inicia o loop principal. citeturn818657view0
+Ponto de entrada da aplicação. Instancia `Game` e inicia o loop principal. 
 
 #### `game.py`
 Gerencia:
@@ -188,7 +188,7 @@ Coordena o estado do mundo do jogo:
 - atualização do mundo,
 - colisões,
 - score,
-- vidas e waves. citeturn646316view1turn646316view3turn646316view6turn646316view8turn646316view9
+- vidas e waves. 
 
 #### `sprites.py`
 Define as entidades do jogo, como:
