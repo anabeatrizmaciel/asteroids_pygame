@@ -45,3 +45,8 @@ RANDOM_SEED = None
 
 # Duração do fade-in da tela de game over (segundos)
 GAME_OVER_FADE_DURATION = 1.5
+
+# Shield mechanic
+SHIELD_DURATION = 8.0
+SHIELD_DROP_CHANCE = 0.30
+SHIELD_PICKUP_RADIUS = 10
