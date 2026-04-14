@@ -210,6 +210,35 @@ Centraliza constantes do projeto, como:
 
 ---
 
+##  Modelo C4
+
+Para representar a arquitetura do sistema, foi utilizado o **Modelo C4**, permitindo visualizar o projeto em diferentes níveis de abstração.
+
+---
+
+### Nível 1 — Contexto
+
+Apresenta uma visão geral do sistema, destacando o jogador como ator principal e o ambiente onde o jogo é executado.
+
+![C4 - Nível 1](./docs/c4-level-1.png)
+
+---
+
+### Nível 2 — Containers
+
+Mostra a divisão do sistema em módulos principais, incluindo o loop do jogo, lógica central, entidades e utilitários.
+
+![C4 - Nível 2](./docs/c4-level-2.png)
+
+---
+
+### Nível 3 — Componentes
+
+Detalha a estrutura interna do sistema, incluindo entidades e mecânicas como escudo, combo, tiro rápido, asteroides resistentes e minas.
+
+![C4 - Nível 3](./docs/c4-level-3.png)
+
+---
 ## Estrutura de pastas
 
 ```bash
