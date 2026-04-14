@@ -12,6 +12,10 @@
 
 </div>
 
+<p align="center">
+  <img src="docs/gameplay-preview.gif" alt="Gameplay preview do Asteroids Pygame" width="800">
+</p>
+
 ---
 
 ## ✨ Visão geral
@@ -30,16 +34,6 @@ Atualmente, o jogo inclui:
 - sistema de **combo**
 - power-ups de **Shield**, **Rapid Fire** e **Shotgun**
 - menu inicial, HUD e tela de game over
-
----
-
-## 🎮 Preview
-
-<p align="center">
-  <img src="docs/gameplay-preview.gif" alt="Gameplay preview do Asteroids Pygame" width="800">
-</p>
-
-> Suba o arquivo `gameplay-preview.gif` para a pasta `docs/` para que este preview apareça corretamente no GitHub.
 
 ---
 
