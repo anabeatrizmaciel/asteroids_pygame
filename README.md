@@ -1,248 +1,121 @@
-# Asteroids Pygame
+<div align="center">
 
-Projeto acadêmico em **Python + Pygame** inspirado no clássico **Asteroids**, com foco em organização simples do código, mecânicas arcade e possibilidade de expansão incremental.
+# ☄️ Asteroids Pygame
 
-O projeto atual já possui uma base jogável com:
-- nave controlada por teclado,
-- tiro com cooldown e limite de projéteis,
-- asteroides com divisão em tamanhos menores,
-- UFO inimigo com tiros,
-- sistema de ondas,
-- score,
-- vidas,
-- hyperspace,
-- menu inicial e tela de game over.  
-Esses elementos estão distribuídos principalmente entre `main.py`, `game.py`, `systems.py`, `sprites.py` e `config.py`.
+**Projeto acadêmico em Python + Pygame inspirado no clássico Asteroids, com foco em mecânicas arcade, organização modular e documentação arquitetural.**
+
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
+![Pygame](https://img.shields.io/badge/Pygame-2.x-0E1117?logo=pygame&logoColor=white)
+![Status](https://img.shields.io/badge/status-playable-success)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Architecture](https://img.shields.io/badge/C4-diagrams-informational)
+
+</div>
 
 ---
 
-## Sumário
-- [Objetivo](#objetivo)
-- [Estado atual do jogo](#estado-atual-do-jogo)
-- [Mecânicas propostas para evolução do projeto](#mecânicas-propostas-para-evolução-do-projeto)
-- [Arquitetura básica do projeto](#arquitetura-básica-do-projeto)
-- [Estrutura de pastas](#estrutura-de-pastas)
-- [Como executar](#como-executar)
-- [Controles](#controles)
-- [Licença](#licença)
+## ✨ Visão geral
+
+Este projeto implementa uma versão jogável de **Asteroids** com progressão por ondas, power-ups, inimigos e diferentes variações de combate.
+
+Atualmente, o jogo inclui:
+
+- movimentação da nave com rotação, aceleração e inércia
+- tiros com cooldown, limite simultâneo e tempo de vida
+- **hyperspace**
+- asteroides por tamanho com fragmentação
+- asteroides resistentes
+- **UFO inimigo**
+- sistema de **waves**
+- sistema de **combo**
+- power-ups de **Shield**, **Rapid Fire** e **Shotgun**
+- menu inicial, HUD e tela de game over
 
 ---
 
-## Objetivo
+## 🎮 Preview
 
-O objetivo do projeto é desenvolver um jogo 2D no estilo arcade, utilizando **Pygame**, com foco em:
-- prática de programação orientada a objetos,
-- manipulação de sprites e colisões,
-- gerenciamento do loop principal do jogo,
-- evolução incremental de mecânicas,
-- documentação e organização do desenvolvimento em equipe.
+<p align="center">
+  <img src="docs/gameplay-preview.gif" alt="Gameplay preview do Asteroids Pygame" width="800">
+</p>
 
-Além da base atual, este repositório também pode ser usado como ponto de partida para uma atividade acadêmica de **game design + modelagem + implementação**, em que novas mecânicas são propostas, documentadas e integradas ao código-fonte.
+> Suba o arquivo `gameplay-preview.gif` para a pasta `docs/` para que este preview apareça corretamente no GitHub.
 
 ---
 
-## Estado atual do jogo
+## 🕹️ Mecânicas implementadas
 
-Na versão atual do repositório, o jogo oferece as seguintes funcionalidades:
+### Nave do jogador
+- rotação para esquerda e direita
+- aceleração
+- movimento com inércia
+- hyperspace para reposicionamento rápido
 
-### 1. Controle da nave
-A nave pode:
-- girar para a esquerda e para a direita,
-- acelerar,
-- disparar projéteis,
-- utilizar hyperspace para se teleportar.  
-O controle é tratado no loop principal e na classe `Ship`. 
+### Combate
+- tiro com cooldown
+- limite de projéteis simultâneos
+- tiros com tempo de vida
+- power-up de **Rapid Fire**
+- power-up de **Shotgun**
 
-### 2. Sistema de tiro
-O jogador possui:
-- cooldown entre disparos,
-- velocidade definida para os projéteis,
-- tempo de vida do tiro,
-- limite simultâneo de balas. 
+### Asteroides
+- asteroides grandes, médios e pequenos
+- fragmentação em tamanhos menores
+- pontuação por tamanho
+- asteroides resistentes com mais de um ponto de vida
 
-### 3. Asteroides com divisão por tamanho
-Os asteroides possuem três tamanhos (`L`, `M` e `S`) e, ao serem destruídos, podem se dividir em fragmentos menores, gerando pontuação diferente para cada tamanho.
+### Inimigos e progressão
+- **UFO** com disparos
+- progressão por **waves**
+- aumento gradual da pressão durante a partida
 
-### 4. UFO inimigo
-O jogo já conta com um inimigo do tipo UFO, que:
-- surge periodicamente,
-- atravessa a tela,
-- tenta atirar na nave,
-- concede pontuação ao ser destruído.
+### Sistema de score
+- pontuação por destruição de alvos
+- **combo** de pontuação
+- custo de score para usar o **hyperspace**
 
-### 5. Progressão por waves
-Quando não restam asteroides em tela, uma nova onda é iniciada com maior quantidade de inimigos.
-
-### 6. HUD e progressão do jogador
-O HUD atual exibe:
-- score,
-- vidas,
-- wave atual.
-
-### 7. Cenas do jogo
-O fluxo atual do jogo inclui:
-- menu inicial,
-- cena principal de gameplay,
-- tela de game over. 
+### Interface
+- menu inicial
+- HUD com score, vidas, wave, shield, rapid fire e combo
+- tela de game over
 
 ---
 
-## Mecânicas propostas para evolução do projeto
+## 🧱 Arquitetura
 
-As mecânicas abaixo são uma **proposta de evolução** para a atividade da disciplina. 
+O projeto está separado em módulos simples para facilitar manutenção e evolução.
 
-### 1. Escudo temporário
-Ao coletar um item especial, a nave recebe proteção temporária contra colisões ou absorve um impacto.
+### Principais arquivos
 
-**Impacto esperado:**
-- aumenta a sobrevivência do jogador,
-- cria momentos de risco/recompensa,
-- adiciona feedback visual relevante.
+- **`src/main.py`**  
+  Ponto de entrada da aplicação.
 
-**Possível impacto no código:**
-- novo estado na nave,
-- temporizador do escudo,
-- atualização da lógica de colisão,
-- novo item coletável.
+- **`src/game.py`**  
+  Gerencia loop principal, estados do jogo, entrada do jogador e renderização.
 
-### 2. Combo de pontuação
-Destruir vários asteroides em sequência, sem levar dano e sem grande intervalo de tempo, ativa um multiplicador de score.
+- **`src/systems.py`**  
+  Centraliza score, colisões, waves, power-ups, progressão e game over.
 
-**Impacto esperado:**
-- deixa o gameplay mais dinâmico,
-- recompensa precisão e ritmo,
-- melhora o sistema de progressão por pontuação.
+- **`src/sprites.py`**  
+  Define entidades como nave, tiros, UFO, asteroides e pickups.
 
-**Possível impacto no código:**
-- contador de combo,
-- temporizador para manutenção do combo,
-- ajuste no cálculo do score,
-- exibição do multiplicador no HUD.
+- **`src/config.py`**  
+  Reúne constantes de gameplay, balanceamento e parâmetros visuais.
 
-### 3. Asteroide resistente
-Alguns asteroides passam a exigir mais de um tiro para serem destruídos.
-
-**Impacto esperado:**
-- aumenta a variedade de desafio,
-- introduz novos padrões de prioridade em combate,
-- mantém forte coerência com a proposta original do jogo.
-
-**Possível impacto no código:**
-- atributo de vida para certos asteroides,
-- variação visual por tipo,
-- atualização no tratamento de colisão bala/asteroide.
-
-### 4. Power-up de tiro rápido
-A nave pode coletar um item que reduz temporariamente o cooldown do disparo.
-
-**Impacto esperado:**
-- gera sensação de recompensa imediata,
-- acelera momentos de ação,
-- amplia a variação de partida para partida.
-
-**Possível impacto no código:**
-- sistema de power-ups,
-- mudança temporária em `SHIP_FIRE_RATE`,
-- temporizador de duração,
-- indicador visual no HUD.
-
-### 5. Mina espacial
-O jogador pode posicionar uma mina no espaço, que explode ao detectar um inimigo próximo ou ao colidir com um asteroide/UFO.
-
-**Impacto esperado:**
-- adiciona estratégia além do disparo direto,
-- cria novas formas de controle de área,
-- torna a movimentação do jogador mais planejada.
-
-**Possível impacto no código:**
-- nova entidade `Mine`,
-- lógica de ativação/explosão,
-- dano em área,
-- atualização do sistema de colisões.
+- **`src/utils.py`**  
+  Funções utilitárias matemáticas e auxiliares.
 
 ---
 
-## Arquitetura básica do projeto
-
-A organização atual do código é simples e adequada para expansão incremental.
-
-### Visão geral dos principais arquivos
-
-#### `main.py`
-Ponto de entrada da aplicação. Instancia `Game` e inicia o loop principal. 
-
-#### `game.py`
-Gerencia:
-- inicialização do Pygame,
-- cenas do jogo,
-- eventos de teclado,
-- troca entre menu, gameplay e game over,
-- desenho de telas auxiliares. citeturn818657view1
-
-#### `systems.py`
-Coordena o estado do mundo do jogo:
-- criação da nave,
-- grupos de sprites,
-- spawning de asteroides,
-- spawning de UFO,
-- atualização do mundo,
-- colisões,
-- score,
-- vidas e waves. 
-
-#### `sprites.py`
-Define as entidades do jogo, como:
-- `Ship`,
-- `Bullet`,
-- `UfoBullet`,
-- `Asteroid`,
-- `UFO`. citeturn818657view3
-
-#### `config.py`
-Centraliza constantes do projeto, como:
-- resolução,
-- FPS,
-- velocidade da nave,
-- atributos dos asteroides,
-- parâmetros do UFO,
-- parâmetros de tiros,
-- cores e outros valores de balanceamento. citeturn818657view2
-
----
-
-##  Modelo C4
-
-Para representar a arquitetura do sistema, foi utilizado o **Modelo C4**, permitindo visualizar o projeto em diferentes níveis de abstração.
-
----
-
-### Nível 1 — Contexto
-
-Apresenta uma visão geral do sistema, destacando o jogador como ator principal e o ambiente onde o jogo é executado.
-
-![C4 - Nível 1](./docs/c4-level-1.png)
-
----
-
-### Nível 2 — Containers
-
-Mostra a divisão do sistema em módulos principais, incluindo o loop do jogo, lógica central, entidades e utilitários.
-
-![C4 - Nível 2](./docs/c4-level-2.png)
-
----
-
-### Nível 3 — Componentes
-
-Detalha a estrutura interna do sistema, incluindo entidades e mecânicas como escudo, combo, tiro rápido, asteroides resistentes e minas.
-
-![C4 - Nível 3](./docs/c4-level-3.png)
-
----
-## Estrutura de pastas
+## 🗂️ Estrutura do projeto
 
 ```bash
 asteroids_pygame/
+├── docs/
+│   ├── c4-level-1.png
+│   ├── c4-level-2.png
+│   ├── c4-level-3.png
+│   └── gameplay-preview.gif
 ├── src/
 │   ├── config.py
 │   ├── game.py
@@ -254,60 +127,106 @@ asteroids_pygame/
 └── README.md
 ```
 
-A pasta `src/` concentra toda a lógica principal do jogo, já separando bem:
-- entrada da aplicação,
-- configurações,
-- entidades,
-- sistemas,
-- utilidades.
+---
+
+## 🧩 Diagramas C4
+
+Os diagramas arquiteturais do projeto estão na pasta `docs/`.
+
+### C4 — Nível 1
+<p align="center">
+  <img src="docs/c4-level-1.png" alt="Diagrama C4 nível 1" width="850">
+</p>
+
+### C4 — Nível 2
+<p align="center">
+  <img src="docs/c4-level-2.png" alt="Diagrama C4 nível 2" width="850">
+</p>
+
+### C4 — Nível 3
+<p align="center">
+  <img src="docs/c4-level-3.png" alt="Diagrama C4 nível 3" width="850">
+</p>
 
 ---
 
-## Como executar
+## 🚀 Como executar
 
-### Pré-requisitos
-- Python 3.10 ou superior
-- Pygame instalado
+### 1. Clone o repositório
 
-### Instalação
+```bash
+git clone https://github.com/anabeatrizmaciel/asteroids_pygame.git
+cd asteroids_pygame
+```
+
+### 2. Instale as dependências
 
 ```bash
 pip install pygame
 ```
 
-### Execução
-
-Entre na pasta do projeto e execute:
+### 3. Execute o jogo
 
 ```bash
 cd src
 python main.py
 ```
 
-Se preferir:
+Ou, se preferir:
 
 ```bash
 python src/main.py
 ```
 
-> Dependendo do ambiente, pode ser necessário ajustar o diretório de execução para que os imports locais funcionem corretamente.
+---
+
+## ⌨️ Controles
+
+### Durante a partida
+- **← / →**: girar nave
+- **↑**: acelerar
+- **Espaço**: atirar
+- **Shift esquerdo**: usar hyperspace
+- **ESC**: sair do jogo
+
+### Menu / Game Over
+- **Qualquer tecla**: iniciar no menu
+- **Enter** ou **Espaço**: reiniciar após game over
+- **ESC**: voltar ao menu
 
 ---
 
-## Controles
+## 🛠️ Tecnologias
 
-Controles:
+- **Python**
+- **Pygame**
+- **Modelagem C4**
 
-- **Seta esquerda**: girar nave para a esquerda
-- **Seta direita**: girar nave para a direita
-- **Seta para cima**: acelerar
-- **Espaço**: atirar
-- **Shift esquerdo**: usar hyperspace
-- **ESC**: sair do jogo ou voltar ao menu, dependendo da cena
-- **Enter / Espaço**: reiniciar após game over  
-Esses controles aparecem no loop principal e na tela de menu.
+---
 
+## 📚 Objetivo acadêmico
 
-## Licença
+Este projeto foi desenvolvido com fins acadêmicos para praticar:
 
-Este projeto utiliza a licença **MIT**, conforme indicado no repositório. 
+- programação orientada a objetos
+- sprites e colisões em jogos 2D
+- gerenciamento de estados e cenas
+- documentação arquitetural com diagramas C4
+- evolução incremental de mecânicas arcade
+
+---
+
+## 🌱 Melhorias futuras
+
+- efeitos sonoros e trilha
+- animações de explosão
+- recorde local
+- tela de pausa
+- dificuldade configurável
+- feedback visual ainda mais forte para dano e power-ups
+
+---
+
+## 📄 Licença
+
+Este projeto utiliza a licença disponível no arquivo **LICENSE**.
