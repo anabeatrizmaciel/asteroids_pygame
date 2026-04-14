@@ -57,7 +57,7 @@ class ShieldPickup(pg.sprite.Sprite):
         super().__init__()
         self.pos = Vec(pos)
         self.r = C.SHIELD_PICKUP_RADIUS
-        self.ttl = 8.0
+        self.ttl = 12.0
         self.rect = pg.Rect(0, 0, self.r * 2, self.r * 2)
         self.rect.center = self.pos
 
@@ -139,6 +139,7 @@ class Ship(pg.sprite.Sprite):
         self.r = C.SHIP_RADIUS
         self.rect = pg.Rect(0, 0, self.r * 2, self.r * 2)
         self.rapid_fire = 0.0
+        self.shotgun = 0.0
 
     def control(self, keys: pg.key.ScancodeWrapper, dt: float):
         if keys[pg.K_LEFT]:
@@ -163,6 +164,29 @@ class Ship(pg.sprite.Sprite):
         self.cool = rate
         return Bullet(pos, vel)
 
+    def fire_shotgun(self):
+        if self.cool > 0:
+            return None
+
+        dirv = angle_to_vec(self.angle)
+        pos = self.pos + dirv * (self.r + 6)
+
+        rate = C.SHIP_FIRE_RATE * 0.7
+        if self.has_rapid_fire():
+            rate *= C.RAPID_FIRE_MULTIPLIER
+
+        self.cool = rate
+
+        bullets = []
+        angles = [-20, -10, 0, 10, 20]
+
+        for offset in angles:
+            new_dir = angle_to_vec(self.angle + offset)
+            vel = self.vel + new_dir * C.SHIP_BULLET_SPEED
+            bullets.append(Bullet(pos, vel))
+
+        return bullets
+
     def hyperspace(self):
         self.pos = Vec(uniform(0, C.WIDTH), uniform(0, C.HEIGHT))
         self.vel.xy = (0, 0)
@@ -180,6 +204,12 @@ class Ship(pg.sprite.Sprite):
     def activate_rapid_fire(self):
         self.rapid_fire = C.RAPID_FIRE_DURATION
 
+    def has_shotgun(self) -> bool:
+        return self.shotgun > 0
+
+    def activate_shotgun(self):
+        self.shotgun = 10.0
+
     def update(self, dt: float):
         if self.cool > 0:
             self.cool -= dt
@@ -194,6 +224,11 @@ class Ship(pg.sprite.Sprite):
             self.rapid_fire -= dt
             if self.rapid_fire < 0:
                 self.rapid_fire = 0.0
+
+        if self.shotgun > 0:
+            self.shotgun -= dt
+            if self.shotgun < 0:
+                self.shotgun = 0.0
         
         self.pos += self.vel * dt
         self.pos = wrap_pos(self.pos)
@@ -289,3 +324,24 @@ class RapidFirePickup(pg.sprite.Sprite):
 
         if int(self.ttl * 6) % 2 == 0:
             pg.draw.circle(surf, (0, 200, 255), self.pos, self.r - 4)
+            
+class ShotgunPickup(pg.sprite.Sprite):
+    def __init__(self, pos: Vec):
+        super().__init__()
+        self.pos = Vec(pos)
+        self.r = C.RAPID_FIRE_RADIUS
+        self.ttl = 8.0
+        self.rect = pg.Rect(0, 0, self.r * 2, self.r * 2)
+        self.rect.center = self.pos
+
+    def update(self, dt: float):
+        self.ttl -= dt
+        if self.ttl <= 0:
+            self.kill()
+        self.rect.center = self.pos
+
+    def draw(self, surf: pg.Surface):
+        pg.draw.circle(surf, (0, 255, 0), self.pos, self.r, width=1)
+
+        if int(self.ttl * 6) % 2 == 0:
+            pg.draw.circle(surf, (0, 255, 0), self.pos, self.r - 4)
