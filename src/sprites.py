@@ -171,7 +171,7 @@ class Ship(pg.sprite.Sprite):
         dirv = angle_to_vec(self.angle)
         pos = self.pos + dirv * (self.r + 6)
 
-        rate = C.SHIP_FIRE_RATE
+        rate = C.SHIP_FIRE_RATE * 0.7
         if self.has_rapid_fire():
             rate *= C.RAPID_FIRE_MULTIPLIER
 
