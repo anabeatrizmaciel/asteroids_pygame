@@ -39,39 +39,33 @@ Atualmente, o jogo inclui:
 
 ## 🕹️ Mecânicas implementadas
 
-### Nave do jogador
+O jogo conta com um conjunto de mecânicas base do gênero arcade, além de novas funcionalidades adicionadas para enriquecer a gameplay.
+
+### Base do jogo
 - rotação para esquerda e direita
 - aceleração
 - movimento com inércia
 - hyperspace para reposicionamento rápido
-
-### Combate
 - tiro com cooldown
 - limite de projéteis simultâneos
 - tiros com tempo de vida
-- power-up de **Rapid Fire**
-- power-up de **Shotgun**
-
-### Asteroides
 - asteroides grandes, médios e pequenos
 - fragmentação em tamanhos menores
 - pontuação por tamanho
-- asteroides resistentes com mais de um ponto de vida
-
-### Inimigos e progressão
 - **UFO** com disparos
 - progressão por **waves**
 - aumento gradual da pressão durante a partida
-
-### Sistema de score
 - pontuação por destruição de alvos
-- **combo** de pontuação
-- custo de score para usar o **hyperspace**
-
-### Interface
 - menu inicial
-- HUD com score, vidas, wave, shield, rapid fire e combo
+- HUD
 - tela de game over
+
+### Mecânicas adicionadas
+- **Shield**: proteção temporária para a nave
+- **Combo**: aumenta a pontuação ao destruir inimigos em sequência
+- **Asteroides resistentes**: exigem mais de um disparo para serem destruídos
+- **Rapid Fire**: reduz temporariamente o intervalo entre tiros
+- **Shotgun**: libera disparos espalhados por tempo limitado
 
 ---
 
